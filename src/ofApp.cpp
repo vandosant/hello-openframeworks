@@ -1,30 +1,32 @@
 #include "ofApp.h"
-
+int circx = 0;
+int circy = 0;
+int circrad = 100;
+bool display = true;
 //--------------------------------------------------------------
 void ofApp::setup(){
-
+    ofEnableSmoothing();
+    ofSetColor(242, 195, 53);
+    ofNoFill();
+    ofSetLineWidth(3);
+    ofSetCircleResolution(80);
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-
+    circx++;
+    circy++;
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    ofColor colorOne(255, 0, 0);
-    ofColor colorTwo(0, 0, 255);
+    ofColor colorOne(217, 34, 59);
+    ofColor colorTwo(22, 20, 38);
     ofBackgroundGradient(colorOne, colorTwo, OF_GRADIENT_BAR);
 
-    ofDrawBitmapStringHighlight("Hello of!", 20, 20);
-
-    ofEnableSmoothing();
-    ofSetColor(0,0,255);
-    ofNoFill();
-    ofSetLineWidth(2);
-    ofSetCircleResolution(100);
-
-    ofDrawCircle(150,150,100);
+    if (display) {
+        ofDrawCircle(circx,circy,circrad);
+    }
 }
 
 //--------------------------------------------------------------
@@ -49,7 +51,9 @@ void ofApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-
+    if(x > circx - circrad && x < circx + circrad && y > circy - circrad && y < circy + circrad) {
+        display = false;
+    }
 }
 
 //--------------------------------------------------------------
